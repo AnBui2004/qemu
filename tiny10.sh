@@ -3,16 +3,16 @@ unzip ngrok-stable-linux-amd64.zip
 rm -rf ngrok-stable-linux-amd64.zip
 ./ngrok authtoken 1wyrtxUrJ6XBMVE5tE4t7RuPXdB_7XeYhawZ12NS3JXgpGdfd
 nohup ./ngrok tcp --region ap 5900
-sudo apt-get update && apt-get install qemu -y
-sudo apt install qemu-utils -y
-sudo apt install qemu-system-x86-xen -y
-sudo apt install qemu-system-x86 -y
+apt update
+apt upgrade
+apt install qemu-utils -y
+apt install qemu -y
 qemu-img create -f raw Tiny10.img 64G
 wget -O RTL8139F.iso 'https://drive.google.com/uc?export=download&id=1wDL8vo9mmYKw1HKXZzaYHoKmzSt_wXai'
 wget -O Tiny10.iso 'https://dl.malwarewatch.org/windows/mods/Tiny%2010.iso'
 
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
-sudo qemu-system-x86_64 \
+qemu-system-x86_64 \
   -m 8G \
   -cpu EPYC \
   -boot order=d \
